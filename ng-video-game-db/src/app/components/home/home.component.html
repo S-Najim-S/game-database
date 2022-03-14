@@ -1,7 +1,11 @@
 <div class="filters">
   <mat-form-field>
     <mat-label>Sort</mat-label>
-    <mat-select panelClass="sort-select" ngModel="sort">
+    <mat-select
+      panelClass="sort-select"
+      [(ngModel)]="sort"
+      (selectionChange)="searchGames(sort)"
+    >
       <mat-option value="name">Name</mat-option>
       <mat-option value="-released">Released</mat-option>
       <mat-option value="-added">Added</mat-option>
@@ -16,7 +20,7 @@
 <!-- Game cards -->
 <div class="games">
   <ng-container *ngFor="let game of games">
-    <div class="game">
+    <div class="game" (click)="openGameDetail(game.id)">
       <div class="game-thumb-container">
         <img
           *ngIf="game.background_image"
